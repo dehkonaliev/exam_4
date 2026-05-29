@@ -55,7 +55,7 @@
                 <!-- Search & Action Buttons (Desktop) -->
                 <div class="hidden md:flex items-center space-x-4">
                     <!-- Search bar placeholder for realistic feel -->
-                     <form method="POST">
+                     <form method="POST" action="{% url 'home' %}">
                         {% csrf_token %}
                         <div class="relative w-48 lg:w-64">
                             <input name="search" type="text" onchange="this.form.submit()"  placeholder="Search products..." class="w-full bg-slate-100 hover:bg-slate-200/70 focus:bg-white text-xs pl-8 pr-4 py-2 rounded-full border border-transparent focus:border-indigo-500 focus:outline-none transition-all">
