@@ -15,4 +15,7 @@ class Product(models.Model):
     is_available = models.BooleanField(default=True)
     image = models.ImageField(upload_to='media/products', default='default-product.jpg')
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    
+    def __str__(self):
+        return self.name
