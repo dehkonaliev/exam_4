@@ -25,8 +25,17 @@ def product_detail(request, pk):
     product = Product.objects.filter(pk=pk).first()
     return render(request, 'detail.html', {'product':product})
 
-def product_update(request):
-    return render(request, 'update.html')
+def product_update(request, pk):
+    product = Product.objects.filter(pk=pk).first()
+    form = NewProductForm(instance=product)
+    if request.method == 'POST':
+        form = NewProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('detail', pk=product.pk)
+    else:
+        form = NewProductForm(instance=product)
+    return render(request, 'update.html', {'form':form, 'product':product})
 
 def new_product(request):
     if request.method == 'POST':
